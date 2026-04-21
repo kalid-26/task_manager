@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %} My Tasks {% endblock %}
+
+
+{% block content %}
+<h2 class="mb-4">My Tasks</h2>
+
+<a href="{% url 'tasks:create_task' %}" class="btn btn-primary mb-3">
+    + Add Task
+</a>
+
+<form method="get" class="row mb-3">
+        <div class="col-md-5">
+            <input type="text" name="q" class="form-control" placeholder="search tasks..." value="{{request.GET.q}}">
+        </div>
+
+        <div class="col-md-3">
+            <select name="status" class="form-select">
+                <option value="">All Status</option>
+                <option value="PENDING" {% if request.GET.status == "PENDING" %}SELECTED {% endif %}>Pending</option>
+                <option value="IN_PROGRESS" {% if request.GET.status == "IN_PROGRESS" %}SELECTED {% endif %}>In Progress</option>
+                <option value="COMPLETED" {% if request.GET.status == "COMPLETED" %}SELECTED {% endif %}>Completed</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary btn-sm">Filter</button>
+        </div>
+    </form>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Profile Picture</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td><img src="{{ task.profile_pic }}"></td>
+            <td>{{ task.title }}</td>
+            <td>
+                {% if task.get_status_display == "Pending" %}
+                <span class="badge text-bg-warning">
+                    {{ task.get_status_display }}
+                </span>
+                {% elif task.get_status_display == "In Progress" %}
+                <span class="badge text-bg-secondary">
+                    {{ task.get_status_display }}
+                </span>
+                {% else %}
+                <span class="badge text-bg-success">
+                    {{ task.get_status_display }}
+                </span>
+                {% endif %}
+            </td>
+            <td>{{ task.created_at }}</td>
+            <td>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="{% url 'tasks:update_task' task.pk %}" class="nav-link text-info"> 
+                        <i class="ri-ball-pen-line"></i> 
+                        <span>Edit</span>
+                    </a>
+
+                    <a href="{% url 'tasks:delete_task' task.pk %}" class="nav-link text-danger">
+                        <i class="ri-suitcase-2-line"></i> 
+                        <span>Delete</span>
+                    </a> 
+
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No tasks yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+
+{% endblock %}

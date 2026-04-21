@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %} Create Task {% endblock %}
+
+
+{% block content %}
+<form method="post" novalidate>
+    {% csrf_token %}
+
+    {% comment %} title input  {% endcomment %}
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        {{form.title}}
+        {% if form.title.errors %}
+        <div class="text-danger">
+            {{form.title.errors}}
+        </div>
+        {% endif %}
+    </div>
+
+    {% comment %} description input  {% endcomment %}
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        {{form.description}}
+    </div>
+
+    {% comment %} status input  {% endcomment %}
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        {{form.status}}
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-success">
+        Save Task
+    </button>
+
+    <a href="{% url 'tasks:list_task' %}" class="btn btn-secondary">
+        Cancel
+    </a>
+</form>
+{% endblock %}

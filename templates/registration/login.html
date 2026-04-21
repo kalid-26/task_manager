@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Task{% endblock %}
+
+{% block content %}
+
+<div class="auth-design">
+    <div class="card shadow auth-card">        
+        <div class="card-body">
+            
+            <h2 class="text-center mb-4">Login</h2>    
+            
+            {% if form.errors %}
+                <dic class="alert alert-danger">
+                    invalid username or password
+                </div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    {{ form.password }}
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+                <a href="{% url 'register' %}">Register</a>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

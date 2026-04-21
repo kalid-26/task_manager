@@ -1,0 +1,17 @@
+.auth-design{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin: 0 auto; */
+    flex-direction: column;
+}
+
+.auth-card{
+    width: 400px;
+}
+
+.form-control:focus,
+.form-select:focus{
+    box-shadow: none;
+}

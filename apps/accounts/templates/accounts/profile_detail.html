@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card shadow">
+            <div class="card-body text-center">
+
+                {% if user_obj.profile_pic %}
+                    <img src="{{ user_obj.profile_pic.url }}" 
+                        class="rounded-circle mb-3" 
+                        width="120" height="120">
+                {% else %}
+                    <p>No profile picture</p>
+                {% endif %}
+
+                <h4>First Name: {{ user_obj.first_name }}</h4>
+                <h4>Last Name: {{ user_obj.last_name }}</h4>
+                <h4>Username: {{ user_obj.username }}</h4>
+                <h4>Email: {{ user_obj.email }}</h4>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

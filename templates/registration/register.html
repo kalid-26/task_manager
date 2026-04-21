@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - Task{% endblock %}
+
+{% block content %}
+
+<div class="auth-design">
+    <div class="card shadow auth-card">        
+        <div class="card-body">
+            
+            <h2 class="text-center mb-4">Register</h2>    
+            
+            {% if form.errors %}
+                <dic class="alert alert-danger">
+                    invalid username or password
+                </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Profile Picture</label>
+                    {{ form.profile_pic }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">First Name</label>
+                    {{ form.first_name }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Last Name</label>
+                    {{ form.last_name }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    {{ form.password1 }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    {{ form.password2 }}
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
