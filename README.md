@@ -22,16 +22,25 @@ A production-style Django application with:
 ## Setup
 
 ```bash
+# Clone repository
 git clone https://github.com/kalid-26/task_manager.git
+cd task_manager
 
-cd project
-
+# Create virtual environment
 python -m venv .venv
 
-.venv\Scripts\activate # or  source .venv/bin/activate 
+# Activate virtual environment 
+# Windows
+.venv\Scripts\activate
 
+# Linux / Mac 
+source .venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 
+# Apply migrations
 python manage.py migrate
 
+# Run server
 python manage.py runserver
