@@ -22,10 +22,16 @@ A production-style Django application with:
 ## Setup
 
 ```bash
-git clone <https://github.com/kalid-26/task_manager.git>
+git clone https://github.com/kalid-26/task_manager.git
+
 cd project
+
 python -m venv .venv
-source venv/bin/activate  # or venv\Scripts\activate
+
+.venv\Scripts\activate # or  source .venv/bin/activate 
+
 pip install -r requirements.txt
+
 python manage.py migrate
+
 python manage.py runserver
