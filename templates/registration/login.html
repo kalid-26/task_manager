@@ -8,7 +8,10 @@
     <div class="card shadow auth-card">        
         <div class="card-body">
             
-            <h2 class="text-center mb-4">Login</h2>    
+            <div class="text-center mb-4">
+                <h2>Login</h2>
+                <p>please login to continue</p>
+            </div>    
             
             {% if form.errors %}
                 <dic class="alert alert-danger">
@@ -29,8 +32,10 @@
                     {{ form.password }}
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Login</button>
-                <a href="{% url 'register' %}">Register</a>
+                <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+                <div class="d-flex justify-content-end">
+                    <a href="{% url 'register' %}" class="">new account?</a>
+                </div>
 
             </form>
         </div>

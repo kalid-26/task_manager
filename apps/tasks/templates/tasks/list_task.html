@@ -32,7 +32,6 @@
 
     <thead>
         <tr>
-            <th>Profile Picture</th>
             <th>Title</th>
             <th>Status</th>
             <th>Created</th>
@@ -43,7 +42,6 @@
     <tbody>
         {% for task in tasks %}
         <tr>
-            <td><img src="{{ task.profile_pic }}"></td>
             <td>{{ task.title }}</td>
             <td>
                 {% if task.get_status_display == "Pending" %}

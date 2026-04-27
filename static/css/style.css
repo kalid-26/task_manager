@@ -1,17 +1,44 @@
+body{
+    font-family: ubuntu-r;
+    background-color: rgb(42, 42, 42);
+}
+
 .auth-design{
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin: 0 auto; */
     flex-direction: column;
 }
 
 .auth-card{
     width: 400px;
 }
+.auth-card,
+.reg-card{
+    background-color: rgb(51, 51, 51);
+    color: rgb(169, 169, 169);
+}
+
+.reg-card{
+    width: 500px;
+}
+
+.form-control,
+.form-select{
+    box-shadow: none;
+    background-color: transparent;
+    border: 1px solid rgb(60, 60, 60);
+}
 
 .form-control:focus,
 .form-select:focus{
     box-shadow: none;
+    background-color: transparent;
+    border: 1px solid rgb(35, 35, 35);
+}
+
+.form-control::placeholder,
+.form-select::placeholder{
+    color: rgb(106, 106, 106);
 }

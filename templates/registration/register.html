@@ -5,16 +5,13 @@
 {% block content %}
 
 <div class="auth-design">
-    <div class="card shadow auth-card">        
+    <div class="card shadow reg-card">        
         <div class="card-body">
             
-            <h2 class="text-center mb-4">Register</h2>    
-            
-            {% if form.errors %}
-                <dic class="alert alert-danger">
-                    invalid username or password
-                </div>
-            {% endif %}
+            <div class="text-center mb-4">
+                <h2>Register</h2>
+                <p>please fill the form to continue</p>
+            </div>    
 
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -23,25 +20,33 @@
                     <label class="form-label">Profile Picture</label>
                     {{ form.profile_pic }}
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">First Name</label>
-                    {{ form.first_name }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            {{ form.first_name }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            {{ form.last_name }}
+                        </div>
+                    </div>
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Last Name</label>
-                    {{ form.last_name }}
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Username</label>
-                    {{ form.username }}
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    {{ form.email }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            {{ form.username }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mb-3">
@@ -54,8 +59,10 @@
                     {{ form.password2 }}
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Register</button>
-
+                <button type="submit" class="btn btn-primary w-100 mb-2">Register</button>
+                <div class="d-flex justify-content-end">
+                    <a href="{% url 'login' %}" class="">already registerd?</a>
+                </div>
             </form>
         </div>
 

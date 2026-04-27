@@ -22,58 +22,73 @@ class CustomUserLogin(AuthenticationForm):
     )
     
 class RegisterForm(UserCreationForm):
+    email = forms.EmailField(
+        required=True,
+        widget=forms.EmailInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "example@gmail.com"
+            }
+        )
+    )
+    
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "******"
+            }
+        )
+    )
+    
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "******"
+            }
+        )
+    )
+    
     class Meta:
         model = CustomUser
-        fields = ['profile_pic', 'first_name', 'last_name', 'username', 'email', 'password', 'password2']
+        fields = ['profile_pic', 'first_name', 'last_name', 'username', 'email', 'password1', 'password2']
         
         widgets = {
-            # "profile_pic": forms.ImageField(
-            #     attrs={
-            #         "class": "form-control",
-            #         "placeholder": "Kalid"
-            #     }
-            # ),
+            
+            "profile_pic": forms.FileInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
             
             "first_name": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Kalid"
+                    "placeholder": "first name"
                 }
             ),
             
             "last_name": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Mohammed"
+                    "placeholder": "last name"
                 }
             ),
             
             "username": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Mohammed"
-                }
-            ),
-            
-            "email": forms.EmailInput(
-                attrs={
-                    "class": "form-control",
-                    "placeholder": "Mohammed"
-                }
-            ),
-            
-            "password1": forms.PasswordInput(
-                attrs={
-                    "class": "form-control",
-                    "placeholder": "Mohammed"
-                }
-            ),
-            
-            "password2": forms.PasswordInput(
-                attrs={
-                    "class": "form-control",
-                    "placeholder": "Mohammed"
+                    "placeholder": "username"
                 }
             ),
             
         }
+        
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError("this email is already registerd!")
+        
+        return email.lower()
