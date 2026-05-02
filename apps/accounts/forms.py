@@ -7,7 +7,7 @@ class CustomUserLogin(AuthenticationForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "kalid",
+                "placeholder": "username",
             }
         )
     )

@@ -8,9 +8,6 @@ A production-style Django application with:
 - Task CRUD operations
 - Profile with image upload
 - Search & filtering
-- Pagination
-- REST API (Django REST Framework)
-- JWT Authentication
 
 ## Tech Stack
 
